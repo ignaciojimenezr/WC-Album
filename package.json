@@ -1,0 +1,26 @@
+{
+  "name": "football-data-ingestion",
+  "version": "1.0.0",
+  "description": "World Cup 2026 Sticker Album - Data ingestion and React frontend",
+  "type": "module",
+  "scripts": {
+    "ingest": "node src/ingest.js",
+    "ingest-csv": "node src/ingestCSV.js",
+    "find-teams": "node src/findTeamIds.js",
+    "server": "node server/index.js",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
