@@ -229,20 +229,26 @@ body {
 /* Player Grid */
 .player-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  padding: 1rem;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1.25rem;
+  padding: 1.5rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .player-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .player-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 600px) {
   .player-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -288,15 +294,12 @@ body {
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+  background: var(--bg-lighter);
+  color: var(--text-secondary);
 }
-
-.player-slot .position-badge.GK { background: var(--pos-gk); color: #000; }
-.player-slot .position-badge.DEF { background: var(--pos-def); color: #fff; }
-.player-slot .position-badge.MID { background: var(--pos-mid); color: #fff; }
-.player-slot .position-badge.FWD { background: var(--pos-fwd); color: #fff; }
 
 .player-slot .club {
   font-size: 0.75rem;

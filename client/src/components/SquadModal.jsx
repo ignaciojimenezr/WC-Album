@@ -31,8 +31,7 @@ export default function SquadModal({ team, onClose, onPlayerClick }) {
           </button>
           <span className="flag">{team.flagEmoji}</span>
           <span className="team-name">{team.name}</span>
-          <span className="progress">{players.length} players</span>
-        </div>
+                  </div>
 
         {loading ? (
           <div className="loading">Loading squad...</div>
@@ -46,25 +45,6 @@ export default function SquadModal({ team, onClose, onPlayerClick }) {
                   onClick={() => onPlayerClick(player)}
                 />
               ))}
-            </div>
-
-            <div className="position-legend">
-              <div className="legend-item">
-                <span className="legend-dot GK"></span>
-                <span>Goalkeeper</span>
-              </div>
-              <div className="legend-item">
-                <span className="legend-dot DEF"></span>
-                <span>Defender</span>
-              </div>
-              <div className="legend-item">
-                <span className="legend-dot MID"></span>
-                <span>Midfielder</span>
-              </div>
-              <div className="legend-item">
-                <span className="legend-dot FWD"></span>
-                <span>Forward</span>
-              </div>
             </div>
           </>
         )}
