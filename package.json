@@ -7,6 +7,8 @@
     "ingest": "node src/ingest.js",
     "ingest-csv": "node src/ingestCSV.js",
     "find-teams": "node src/findTeamIds.js",
+    "test-images": "node src/generateTestImages.js",
+    "generate-team": "node src/generateTeamImages.js",
     "server": "node server/index.js",
     "client": "cd client && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\""
