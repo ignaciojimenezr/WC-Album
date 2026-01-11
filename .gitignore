@@ -29,4 +29,10 @@ dist/
 build/
 *.tsbuildinfo
 
+# Player images
+client/public/players/
+
+# Player data
+wc26_best26_full_with_club_country_v19_corrected.csv
+
 
