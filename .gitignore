@@ -32,9 +32,6 @@ build/
 # Player images
 client/public/players/
 
-# Screenshots
-client/public/screenshots/
-
 # Player data
 wc26_best26_full_with_club_country_v19_corrected.csv
 
