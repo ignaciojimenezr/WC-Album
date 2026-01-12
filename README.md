@@ -1,19 +1,14 @@
-# Football Data Ingestion
+# Virtual World Cup Album
 
-Ingest football squad/player data into MongoDB Atlas. Supports both CSV import and Sportmonks API.
+A virtual World Cup album built for MongoDB's AI Hackathon. Player data and image URLs are stored in MongoDB Atlas, then Fireworks AI takes those image URLs and generates cartoon versions of the players to avoid copyright issues.
 
-## Features
+![Argentina Squad](client/public/screenshots/argentina-squad.png)
 
-- **CSV Import** (Recommended): Import your own curated squad data
-- **Sportmonks API**: Fetch from Sportmonks Football API v3
-- Stores up to 24 players per team
-- Persists teams, players, and squad references to MongoDB Atlas
-- Upsert behavior (safe to re-run)
+## Tech Stack
 
-## Prerequisites
-
-- Node.js 18+ (uses native fetch)
-- MongoDB Atlas account and cluster
+- **MongoDB Atlas** - Database for player data and image URLs
+- **Fireworks AI** - Image generation (cartoon player images)
+- **Node.js** - Backend
 
 ## Setup
 
@@ -25,127 +20,9 @@ Ingest football squad/player data into MongoDB Atlas. Supports both CSV import a
 2. **Configure environment:**
    ```bash
    cp .env.example .env
-   # Edit .env with your MongoDB URI
+   # Edit .env with your MongoDB URI and Fireworks API key
    ```
 
-## Usage
+## GitHub
 
-### Option 1: CSV Import (Recommended)
-
-Import squad data from your own CSV file:
-
-```bash
-npm run ingest-csv -- data/squads.csv
-```
-
-**CSV Format:**
-```csv
-team,name,position,club,country
-Spain,Pedri,Midfielder,Barcelona,Spain
-Spain,Lamine Yamal,Forward,Barcelona,Spain
-Argentina,Lionel Messi,Forward,Inter Miami,USA
-Argentina,Julián Álvarez,Forward,Atlético Madrid,Spain
-```
-
-Required columns: `team`, `name`
-Optional columns: `position`, `club`, `country`
-
-See `data/squads.example.csv` for a template.
-
-### Option 2: Sportmonks API
-
-If you have a Sportmonks API key with access to national team data:
-
-```bash
-# Set TEAM_IDS in .env first
-npm run ingest
-```
-
-Note: Sportmonks free plan may have limited access to national team data.
-
-## Environment Variables
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `MONGODB_URI` | Yes | MongoDB Atlas connection string |
-| `DB_NAME` | No | Database name (default: "football") |
-| `SPORTMONKS_API_KEY` | For API | Your Sportmonks API key |
-| `TEAM_IDS` | For API | Comma-separated team IDs |
-
-## Data Model
-
-### `teams` Collection
-
-```javascript
-{
-  _id: "team:csv:spain",
-  provider: "csv",
-  providerId: "Spain",
-  name: "Spain",
-  type: "national",
-  country: { id: null, name: "Spain", code: null },
-  updatedAt: ISODate("...")
-}
-```
-
-### `players` Collection
-
-```javascript
-{
-  _id: "player:csv:spain-pedri",
-  provider: "csv",
-  providerId: "Spain:Pedri",
-  name: "Pedri",
-  position: "Midfielder",
-  nationality: { id: null, name: "Spain", code: null },
-  currentClub: { id: null, name: "Barcelona" },
-  currentClubCountry: { id: null, name: null, code: null },
-  updatedAt: ISODate("...")
-}
-```
-
-### `squads` Collection
-
-```javascript
-{
-  _id: "squad:csv:spain:current",
-  provider: "csv",
-  teamId: "Spain",
-  teamName: "Spain",
-  playerIds: ["player:csv:spain-pedri", ...],  // max 24
-  fetchedAt: ISODate("...")
-}
-```
-
-## Indexes
-
-Created automatically on startup:
-
-- `teams`: unique `{ provider, providerId }`, query on `country.id`
-- `players`: unique `{ provider, providerId }`, query on `nationality.id`, `currentClub.id`
-- `squads`: unique `{ provider, teamId }`, query on `teamId`
-
-## Project Structure
-
-```
-├── package.json
-├── .env.example
-├── README.md
-├── data/
-│   └── squads.example.csv    # CSV template
-└── src/
-    ├── config.js             # Environment configuration
-    ├── db.js                 # MongoDB utilities
-    ├── ingestCSV.js          # CSV import pipeline
-    ├── ingest.js             # Sportmonks API pipeline
-    ├── sportmonksClient.js   # API client
-    └── findTeamIds.js        # Team ID search helper
-```
-
-## Scripts
-
-| Script | Description |
-|--------|-------------|
-| `npm run ingest-csv -- <file>` | Import from CSV file |
-| `npm run ingest` | Import from Sportmonks API |
-| `npm run find-teams -- <countries>` | Search Sportmonks for team IDs |
+🔗 https://github.com/ignaciojimenezr/WC-Album
