@@ -2,7 +2,7 @@
 
 A virtual World Cup album built for MongoDB's AI Hackathon. Player data and image URLs are stored in MongoDB Atlas, then Fireworks AI takes those image URLs and generates cartoon versions of the players to avoid copyright issues.
 
-![Argentina Squad](client/public/screenshots/argentina-squad.png)
+![Argentina Squad](client/public/screenshots/argSS.png)
 
 ## Tech Stack
 
